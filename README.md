@@ -1,97 +1,155 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Getting Started
+markdown
+# 🚛 Voice-based Parking Finder (Cargovibe Case Study)
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+This is a **React Native (TypeScript)** prototype built for the Cargovibe case study.  
+It simulates a **voice-based parking finder** for truck drivers, focusing on **fast discovery and reservation** of parking spots within their remaining rest driving time.
 
-## Step 1: Start Metro
+---
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## ✨ Features
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+- **Voice Input Simulation**: Press the mic button to simulate a spoken command like  
+  _“Find me a parking spot on the way to Munich in 30 minutes”_.
+- **Text Input**: Manually enter commands for quick testing.
+- **Smart Parsing**: Extracts time constraints (e.g., “30 minutes”) using simple regex.
+- **Mock Parking Suggestions**:
+  - Shows parking spot name, location, drive time, and price
+  - Filters results to match time constraints and availability
+- **Reservation Action**: Reserve a spot with one tap (shows success toast)
+- **Modern UI Enhancements**:
+  - Pulse animation on voice input button
+  - Fade-in animation for parking cards
+  - Vector icons for better visual hierarchy
+  - Rounded-pill buttons and improved typography
 
-```sh
-# Using npm
-npm start
+---
 
-# OR using Yarn
-yarn start
+## 🛠 Tech Stack
+
+- **React Native** (no Expo)
+- **TypeScript**
+- **react-native-vector-icons** (icons)
+- **react-native-animatable** (animations)
+- **ToastAndroid** (Android quick feedback)
+
+---
+
+## 📂 Project Structure
+
 ```
 
-## Step 2: Build and run your app
+.
+├── app/index.tsx                # Main entry point
+├──app/components
+├──app/screens
+├──app/navigation
+├── package.json
+├── tsconfig.json
+├── android/ / ios/        # Native projects
+└── README.md
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+````
 
-### Android
+*(For a larger project, we would split into `components/`, `types/`, and `screens/`.)*
 
-```sh
-# Using npm
-npm run android
+---
 
-# OR using Yarn
-yarn android
+## 📦 Installation & Running
+
+### Prerequisites
+- React Native CLI environment setup ([guide](https://reactnative.dev/docs/environment-setup))
+- Node.js & npm/yarn
+- Android Studio or Xcode for simulator
+
+### Steps
+```bash
+# 1. Clone repo
+git clone <your_repo_url>
+cd ParkingFinder
+
+# 2. Install dependencies
+npm install
+
+# 3. Install native dependencies
+npm install react-native-vector-icons react-native-animatable
+
+# 4. (Only if RN <0.71)
+npx react-native link react-native-vector-icons
+
+# 5. Run
+npx react-native run-android   # or run-ios
+````
+
+---
+
+## 🖼 Screenshots (Example)
+[App Demo](app/assets/demo.gif)
+*(You can add actual screenshots after running on your device)*
+
+* **Home screen:** Input + mic button
+* **Results:** Filtered parking cards with fade-in animation
+* **Reserve confirmation:** Toast success message
+
+---
+
+## 🚀 Approach
+
+1. **MVP Flow**:
+
+   * Simulate voice → extract time → show parking results → reserve.
+
+2. **Simplified NLP**:
+
+   * Used regex to parse time (`/(\d+)\s*minutes?/i`).
+   * For production, would integrate proper NLP or a service like **Whisper**.
+
+3. **UI/UX**:
+
+   * Used **icons**, **rounded buttons**, **animations** to make it presentable within 2 hours.
+
+---
+
+## ✅ What Worked Well
+
+* React Native CLI with TypeScript provided quick setup & type safety.
+* Animations and icons drastically improved look & feel without heavy effort.
+
+---
+
+## ⚠️ Challenges
+
+* Full voice-to-text integration requires extra time (used simulation instead).
+* No real map/routing APIs (mocked data instead).
+
+---
+
+## 🔮 Improvements (With More Time)
+
+* Integrate **actual voice input** using [`react-native-voice`](https://github.com/react-native-voice/voice).
+* Use **real routing API** (Google Maps or HERE) for accurate distance filtering.
+* Integrate **live parking availability API**.
+* Add **driver authentication** and **persistent reservations**.
+
+---
+
+ 
+---
+
+## 👨‍💻 Author
+
+**Hafiz Muhammad Ali Saeed**
+
+* GitHub: \[your-username]
+* Email: [saeedali090@gmail.com](mailto:saeedali090@gmail.com)
+
+---
+
+**Thanks for the opportunity! Excited to discuss in our follow-up session.**
+
 ```
 
-### iOS
+---
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
 ```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
