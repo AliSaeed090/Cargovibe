@@ -1,9 +1,10 @@
+Here’s the **updated `README.md`** reflecting the new **decision logic & far-route feature**:
 
-markdown
+```markdown
 # 🚛 Voice-based Parking Finder (Cargovibe Case Study)
 
 This is a **React Native (TypeScript)** prototype built for the Cargovibe case study.  
-It simulates a **voice-based parking finder** for truck drivers, focusing on **fast discovery and reservation** of parking spots within their remaining rest driving time.
+It simulates a **voice-based parking finder** for truck drivers, focusing on **fast discovery and reservation** of parking spots within their remaining rest driving time — and now also highlights **future options farther along the route**.
 
 ---
 
@@ -13,21 +14,24 @@ It simulates a **voice-based parking finder** for truck drivers, focusing on **f
   _“Find me a parking spot on the way to Munich in 30 minutes”_.
 - **Text Input**: Manually enter commands for quick testing.
 - **Smart Parsing**: Extracts time constraints (e.g., “30 minutes”) using simple regex.
-- **Mock Parking Suggestions**:
-  - Shows parking spot name, location, drive time, and price
-  - Filters results to match time constraints and availability
+- **Smart Parking Suggestions**:
+  - Calculates **distance using the Haversine formula**
+  - Flags parking spots as:
+    - **Reachable Now** (within the remaining driving time)
+    - **Farther on Route** (not reachable now, but still on the way)
+    - **Off Route** (not on the main path)
 - **Reservation Action**: Reserve a spot with one tap (shows success toast)
 - **Modern UI Enhancements**:
   - Pulse animation on voice input button
   - Fade-in animation for parking cards
-  - Vector icons for better visual hierarchy
+  - Badges for route relevance (green, orange, red)
   - Rounded-pill buttons and improved typography
 
 ---
 
 ## 🛠 Tech Stack
 
-- **React Native** (no Expo)
+- **React Native CLI** (no Expo)
 - **TypeScript**
 - **react-native-vector-icons** (icons)
 - **react-native-animatable** (animations)
@@ -41,19 +45,16 @@ It simulates a **voice-based parking finder** for truck drivers, focusing on **f
 
 .
 ├── app/index.tsx                # Main entry point
-├──app/components
-├──app/screens
-├──app/navigation
+├── app/components
+├── app/screens
+├── app/navigation
+├── app/utils
+├── app/types
 ├── package.json
 ├── tsconfig.json
-├── android/ / ios/        # Native projects
+├── android/ / ios/              # Native projects
 └── README.md
-
-````
-
-*(For a larger project, we would split into `components/`, `types/`, and `screens/`.)*
-
----
+ 
 
 ## 📦 Installation & Running
 
@@ -83,13 +84,14 @@ npx react-native run-android   # or run-ios
 
 ---
 
-## 🖼 Screenshots (Example)
-[App Demo](app/assets/demo.gif)
-*(You can add actual screenshots after running on your device)*
+## 🖼 Screenshots & Demo
 
-* **Home screen:** Input + mic button
-* **Results:** Filtered parking cards with fade-in animation
-* **Reserve confirmation:** Toast success message
+![App Demo](./assets/demo.gif)
+- **Input simulation** (text or voice)
+- **Parking suggestions** (Reachable Now + Farther on Route)
+- **Reserve action** with confirmation toast
+
+ 
 
 ---
 
@@ -97,59 +99,57 @@ npx react-native run-android   # or run-ios
 
 1. **MVP Flow**:
 
-   * Simulate voice → extract time → show parking results → reserve.
+   * Simulate voice → extract time → filter spots by distance → categorize results → reserve.
 
-2. **Simplified NLP**:
+2. **Decision Logic**:
 
-   * Used regex to parse time (`/(\d+)\s*minutes?/i`).
-   * For production, would integrate proper NLP or a service like **Whisper**.
+   * Used **Haversine formula** to calculate distance (earth curvature).
+   * Spots classified as **Reachable Now** (within time limit), **Farther on Route**, or **Off Route**.
+   * Used a vector angle check to determine if a spot is along the route.
 
 3. **UI/UX**:
 
-   * Used **icons**, **rounded buttons**, **animations** to make it presentable within 2 hours.
+   * Added **badges (green, orange, )** for clarity.
+   * Used **animations** to make the experience visually appealing within limited time.
 
 ---
 
 ## ✅ What Worked Well
 
-* React Native CLI with TypeScript provided quick setup & type safety.
-* Animations and icons drastically improved look & feel without heavy effort.
+* Distance and route classification improved realism while staying lightweight (no real API needed).
+* Animations and badges helped present data in an intuitive way.
+* TypeScript provided type safety and cleaner structure.
 
 ---
 
 ## ⚠️ Challenges
 
-* Full voice-to-text integration requires extra time (used simulation instead).
-* No real map/routing APIs (mocked data instead).
+* No actual routing API (mocked "along route" check with vector math).
+* Voice input is simulated instead of fully integrated (for speed).
 
 ---
 
 ## 🔮 Improvements (With More Time)
 
-* Integrate **actual voice input** using [`react-native-voice`](https://github.com/react-native-voice/voice).
-* Use **real routing API** (Google Maps or HERE) for accurate distance filtering.
-* Integrate **live parking availability API**.
-* Add **driver authentication** and **persistent reservations**.
+* Integrate **real voice input** (e.g., [`react-native-voice`](https://github.com/react-native-voice/voice))
+* Use **Google Maps or HERE Routing API** for actual route filtering.
+* Fetch **live parking availability** and pricing.
+* Add **user authentication & reservation history**.
 
----
-
- 
 ---
 
 ## 👨‍💻 Author
 
 **Hafiz Muhammad Ali Saeed**
 
-* GitHub: \AliSaeed090
+* GitHub: [AliSaeed090](https://github.com/AliSaeed090)
 * Email: [saeedali090@gmail.com](mailto:saeedali090@gmail.com)
 
 ---
 
-**Thanks for the opportunity! Excited to discuss in our follow-up session.**
+**Thanks for the opportunity! Excited to discuss this in our follow-up session.**
 
 ```
 
 ---
-
-
-```
+ 
