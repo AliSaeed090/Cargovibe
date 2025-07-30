@@ -1,6 +1,3 @@
-Here’s the **updated `README.md`** reflecting the new **decision logic & far-route feature**:
-
- 
 # 🚛 Voice-based Parking Finder (Cargovibe Case Study)
 
 This is a **React Native (TypeScript)** prototype built for the Cargovibe case study.  
