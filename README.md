@@ -83,7 +83,7 @@ npx react-native run-android   # or run-ios
 
 ## 🖼 Screenshots & Demo
 
-[App Demo](./assets/demo.gif)
+![App Demo](./app/assets/demo.gif)
 - **Input simulation** (text or voice)
 - **Parking suggestions** (Reachable Now + Farther on Route)
 - **Reserve action** with confirmation toast
