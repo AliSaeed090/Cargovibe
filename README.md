@@ -140,7 +140,7 @@ npx react-native run-android   # or run-ios
 
 **Hafiz Muhammad Ali Saeed**
 
-* GitHub: \[your-username]
+* GitHub: \AliSaeed090
 * Email: [saeedali090@gmail.com](mailto:saeedali090@gmail.com)
 
 ---
